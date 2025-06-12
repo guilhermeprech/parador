@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Pedido Especial 💖</title>
+    <style>
+        body {
+            background-color: #ffe6f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            color: #e60073;
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 40px;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 10px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #sim {
+            background-color: #ff3399;
+            color: white;
+        }
+        #sim:hover {
+            background-color: #cc0066;
+        }
+        #nao {
+            background-color: #ff9999;
+            color: white;
+            position: absolute;
+        }
+        .coracao {
+            position: absolute;
+            font-size: 2em;
+            color: #ff1a75;
+            animation: flutuar 5s infinite;
+        }
+        @keyframes flutuar {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>💖 Feliz dia dos namorados! 💖<br>Você aceita sair comigo?</h1>
+    <button id="sim" class="button">Sim</button>
+    <button id="nao" class="button">Não</button>
+
+    <script>
+        const naoButton = document.getElementById("nao");
+        const simButton = document.getElementById("sim");
+
+        naoButton.addEventListener("mouseover", () => {
+            const x = Math.random() * (window.innerWidth - naoButton.offsetWidth);
+            const y = Math.random() * (window.innerHeight - naoButton.offsetHeight);
+            naoButton.style.left = `${x}px`;
+            naoButton.style.top = `${y}px`;
+        });
+
+        simButton.addEventListener("click", () => {
+            document.body.innerHTML = "<h1>🎉 Parabéns! Você ganhou uma ida ao Hotel Parador comigo! 🎉</h1>";
+        });
+
+        // Criar corações flutuantes
+        function criarCoracao() {
+            const coracao = document.createElement("div");
+            coracao.classList.add("coracao");
+            coracao.style.left = `${Math.random() * 100}%`;
+            coracao.innerText = "❤️";
+            document.body.appendChild(coracao);
+
+            setTimeout(() => {
+                coracao.remove();
+            }, 5000);
+        }
+
+        setInterval(criarCoracao, 300);
+    </script>
+</body>
+</html>
